@@ -1,0 +1,13 @@
+chesscode -
+https://golangexample.com/chesscode-a-way-of-encoding-messages-using-a-chess-board-and-the-starting-set-of-chess-pieces/
+
+github example 
+https://github.com/notnil/chesscode?ref=golangexample.com
+
+Encoding
+https://www.youtube.com/watch?v=7_QP8Rk9TE8
+
+
+set starting positions
+
+set based on chars
