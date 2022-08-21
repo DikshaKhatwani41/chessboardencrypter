@@ -1,5 +1,5 @@
 # chessboardencrypter
-<h1>Encrypted chess board with hard to crack decoder coded with Go Programming Language</h1>
+<h2>Encrypted chess board with hard to crack decoder coded with Go Programming Language</h2>
 
 
 <strong>
