@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Rock, Paper, Scissors</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4">Rock, Paper Scissors</h1>
+        <hr>
+
+        <p id="player_choice">&nbsp;</p>
+        <p id="computer_choice">&nbsp;</p>
+        <p id="round_result">&nbsp;</p>
+
+        <hr>
+        <p>Choose rock, paper, or scissors!</p>
+        <br>
+        <br>
+
+        <button class="btn btn-outline-secondary" onclick="choose(0);">Rock</button>
+        <button class="btn btn-outline-danger" onclick="choose(1)">Paper</button>
+        <button class="btn btn-outline-success" onclick="choose(2)">Scissors</button>
+    </div>
+</body>
+<script>
+    /* calling the web application and requesting a response which will come
+       in the form of json.then we print that to the javascript console.
+       in order to do that, we use buit-in js function called fetch.
+       fetch makes a request (like a browser) to a url or web address and gets a
+       response. but it does it behind the scene without leaving the current
+       web page. I dont want to leave the page every single time the user makes
+       a request. so i get the necessary information and then will use javascript
+       to change the contents of the page without leaving it.
+
+       when i write "/play?c=" + x
+       x is the argument we pass , the ?c= is the little extra info
+       we pass by the url everytime we make a request.
+
+       response => response.json()   gets the response and convert it to json
+
+       .then(data =>    get the json and store it to variable 'data'
+        */
+    function choose(x) {
+        fetch("/play?c=" + x)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+
+        if (x == 0) {
+            document.getElementById("player_choice").innerHTML = "You clicked rock";
+        } else if (x == 1) {
+            document.getElementById("player_choice").innerHTML = "You clicked paper";
+        } else {
+            document.getElementById("player_choice").innerHTML = "You clicked scissors";
+        }
+        
+    }
+</script>
+</html>
