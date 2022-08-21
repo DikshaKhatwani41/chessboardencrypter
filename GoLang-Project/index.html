@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src="display.js"> </script>--> 
+    
+    <title>Chesscode</title>
+    <style>
+        
+        .cell {
+            height: 50px;
+            width: 50px;
+            border: 1.5px solid grey;
+            border-style: inset;
+            font-size: 40px;
+        }
+ 
+        .blackcell {
+            background-color: rgba(146, 60, 60, 0.87);
+        }
+ 
+        .whitecell {
+            background-color: lavenderblush;
+        }
+        #textbox {
+            background-color: lavenderblush;
+            height: 30px;
+            width: 310px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .button {
+            background-color: rgba(92, 32, 32, 0.87); /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <i class='fas fa-chess'></i>
+    Input:
+    
+    <script type="text/javascript">
+        
+        // Create a text box
+        var textBox=document.createElement('Input')
+        textBox.setAttribute("type","text")
+        textBox.setAttribute("id","textbox")
+        // Create a table element
+        var ChessTable = document.createElement('table');
+        for (var i = 0; i < 8; i++) {
+ 
+            // Create a row
+            var tr = document.createElement('tr');
+            for (var j = 0; j < 8; j++) {
+ 
+                // Create a cell
+                var td = document.createElement('td');
+                td.setAttribute('id',""+i+j);
+                
+                // If the sum of cell coordinates is even
+                // then color the cell white
+                if ((i + j) % 2 == 0) {
+ 
+                    // Create a class attribute for all white cells
+                    td.setAttribute('class', 'cell whitecell'); // belongs to cell and whitecell class
+                    tr.appendChild(td);
+                }
+ 
+                // If the sum of cell coordinates is odd then color the cell black
+                else {
+                    // Create a class attribute for all black cells
+                    td.setAttribute('class', 'cell blackcell');
+ 
+                    // Append the cell to its row
+                    tr.appendChild(td);
+                }
+            }
+ 
+            // Append the row
+            ChessTable.appendChild(tr);
+        }
+        //center.appendChild(ChessTable);
+        // create fen code label 
+        label=document.createElement('label');
+        str ="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+        
+        //label.innerHTML=""+str;
+        label.setAttribute('id','fen');
+        // Modifying table attribute properties
+        ChessTable.setAttribute('cellspacing', '0');
+        ChessTable.setAttribute('width', '360px');
+        ChessTable.setAttribute('style','margin-bottom:20px');
+        
+        // creating buttons
+        encode=document.createElement('button');
+        decode=document.createElement('button');
+        encode.innerHTML='Encode';
+        decode.innerHTML='Decode';
+        encode.setAttribute('id','encode');
+        decode.setAttribute('id','decode');
+        
+        encode.setAttribute('class','button');
+        decode.setAttribute('class','button');
+        document.body.appendChild(textBox);
+        
+        document.body.appendChild(ChessTable);
+        display(str);
+        document.body.appendChild(label);
+        document.body.appendChild(document.createElement('br'));
+        document.body.appendChild(encode);
+        document.body.appendChild(decode);
+        //document.getElementById("encode").setAttribute("onclick",'encodestr("'+str+'");');
+        
+        document.getElementById("encode").setAttribute("onclick","encodestr();");
+        document.getElementById("decode").setAttribute("onclick","decodestr();");
+        
+        
+    function display(text){
+        curIndex=0; // current index of my text
+        for (i=0;i<8;i++){ // clear my table first
+            for(j=0;j<8;j++){
+                document.getElementById(""+i+""+j).innerHTML="";
+            }
+        }
+        for (i=0;i<8;i++){
+            for(j=0;j<8;j++){
+                c = text.charAt(curIndex);
+                if(text.charCodeAt(curIndex)>=49 && text.charCodeAt(curIndex)<=57){
+                    j+= (text.charCodeAt(curIndex)-49); // 49-49 = 0, 50-49=1 // skip once/ twice/ thrice 
+                    curIndex++;
+                    
+                    
+                }
+                switch (c) {
+                    case 'r':
+                        document.getElementById(""+i+j).innerHTML="&#9820;";
+                        
+                        curIndex++;
+                        break;
+                    case 'n':
+                        document.getElementById(""+i+j).innerHTML="&#9822;";
+                        curIndex++;
+                        break;
+                    case 'b':
+                        document.getElementById(""+i+j).innerHTML="&#9821;";
+                        curIndex++;
+                        break;
+                    case 'q':
+                        document.getElementById(""+i+j).innerHTML="&#9819;";
+                        curIndex++;
+                        break;
+                    case 'k':
+                        document.getElementById(""+i+j).innerHTML="&#9818;";
+                        curIndex++;
+                        break;
+                    case 'p':
+                        document.getElementById(""+i+j).innerHTML="&#9823;";
+                        curIndex++;
+                        break;
+                    case 'R':
+                        document.getElementById(""+i+j).innerHTML="&#9814;";
+                        curIndex++;
+                        break;
+                    case 'N':
+                        document.getElementById(""+i+j).innerHTML="&#9816;";
+                        curIndex++;
+                        break;
+                    case 'B':
+                        document.getElementById(""+i+j).innerHTML="&#9815;";
+                        curIndex++;
+                        break;
+                    case 'Q':
+                        document.getElementById(""+i+j).innerHTML="&#9813;";
+                        curIndex++;
+                        break;
+                    case 'K':
+                        document.getElementById(""+i+j).innerHTML="&#9812;";
+                        curIndex++;
+                        break;
+                    case 'P':
+                        document.getElementById(""+i+j).innerHTML="&#9817;";
+                        curIndex++;
+                        break;
+                    
+                }
+                
+                
+            }
+            curIndex++; //ignoring '/'
+            
+        }
+    }
+
+    function encodestr(){
+        let str=document.getElementById("textbox").value;
+        fetch("/encode?str="+str.toUpperCase() )
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("fen").innerHTML=data.fen;
+            
+            display(data.fen);
+            document.getElementById("textbox").value="";
+        })
+        
+    }
+    
+    function decodestr(){
+        let str=document.getElementById("textbox").value;
+        fetch("/decode?str="+str )
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("fen").innerHTML=data.fen;
+            
+            display(data.fen);
+            let message = document.getElementById("fen")
+            message.innerHTML = "Decoded String :"+data.message;
+            //document.body.appendChild(message)
+        })
+        
+    }
+    </script>
+   
+   
+</body>
+</html>
