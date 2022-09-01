@@ -1,6 +1,13 @@
 # chessboardencrypter
 <h2>Encrypted chessboard encoded with Go Programming Language</h2>
 
+## Languages used:
+Go, HTML, CSS
+
+## Database:
+Go's in-built Database
+
+## Description/ Demonstration
 
 <strong>
 Are you a spy that needs to leave an urgent top secret message for an incoming foreign diplomat but the only thing in the consulate’s parlor is a chessboard? Chesscode has you covered.
